@@ -1,0 +1,65 @@
+input[type="checkbox"]{
+    display: none;
+}
+.labelcheckbox > *{
+    position: relative;
+}
+input[type="checkbox"] + .labelcheckbox > *::before{
+    content: "";
+    background-image:  url("/dashboard/img/check.png");
+    background-position: center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -10px;
+    transform: scale(0) rotateZ(180deg);
+    transition: all 0.4s cubic-bezier(0.54, 0.01, 0, 1.49);
+}
+input[type="checkbox"]:checked + .labelcheckbox > *::before{
+    transform: scale(1) rotateZ(0deg);
+}
+.labelcheckbox > *::after{
+    content: "";
+    border: 1.8px solid rgb(124,138,239);
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top:-10px;
+    border-radius: 50%;
+}
+
+
+
+/* 
+
+input[type="checkbox"]{
+    display: none;
+}
+.label_teacher > .l_teacher{
+    position: relative;
+}
+input[type="checkbox"] + .label_teacher > .l_teacher::before{
+    content: "";
+    background-image:  url("/dashboard/img/check.png");
+    background-position: center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -10px;
+    transform: scale(0) rotateZ(180deg);
+    transition: all 0.4s cubic-bezier(0.54, 0.01, 0, 1.49);
+}
+input[type="checkbox"]:checked + .label_teacher > .l_teacher::before{
+    transform: scale(1) rotateZ(0deg);
+}
+.label_teacher > .l_teacher::after{
+    content: "";
+    border: 1.8px solid rgb(124,138,239);
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top:-10px;
+    border-radius: 50%;
+} */

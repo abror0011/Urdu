@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+    Route::get('/','SityController@home')->name('home');
+    Route::resource('/students','StudentController');
+});
