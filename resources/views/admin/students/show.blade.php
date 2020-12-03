@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin' ,['title' => 'Talabani ko\'rish'])
 
 @section('content')
 <!-- Basic Card Example -->
@@ -10,7 +10,7 @@
         </h5>
     </div>
     <div class="card-body">
-        <table class="table table-striped">
+        <table class="table table-striped text-gray-900">
             <tr>
                 <th>Ismi</th>
                 <td>{{$student->first_name}}</td>
@@ -40,17 +40,17 @@
                 </td>
             </tr>
             <tr>
-                <th>Login</th>
+                <th>Phone</th>
                 <td>
-                    {{$student->user->name}}
+                    {{$student->user->phone}}
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <th>Parol</th>
                 <td>
-                    {{-- {{$users->password}} --}}
+                    {{}}
                 </td>
-            </tr>
+            </tr> --}}
             <tr>
                 <th>Bahosi</th>
                 <td>

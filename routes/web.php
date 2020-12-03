@@ -11,10 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+// Auth::routes();
+Route::get('/','SityController@index')->name('home');
+Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/','SityController@home')->name('home');
+    // Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/students','StudentController');
+    Route::resource('/amaliyot','AmaliyotController');
+    // Profile uptada
+    Route::put('/password/{id}','StudentController@password')->name('password');
+    Route::get('/amaliyotlar','AmaliyotlarController@index')->name('amaliyotlar');
 });
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

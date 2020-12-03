@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
+use App\Http\Requests\PasswordRequest;
+
 use App\Models\Student;
 use App\User;
 
@@ -18,6 +20,7 @@ class StudentController extends Controller
     public function index()
     {   
         $students = Student::latest()->get();
+        // dd($students);
         return view('admin.students.index',compact('students')); 
     }
 
@@ -41,8 +44,7 @@ class StudentController extends Controller
     {
         $data = $request;
         $user_data = [
-            'name' => $request->post('user_name'),
-            'email' => $request->post('email'),
+            'phone' => $request->post('user_name'),
             'password' => bcrypt($request->post('password'))
         ];
         $user=User::create($user_data);
@@ -56,7 +58,7 @@ class StudentController extends Controller
             
         ];
         $user->student()->create($student_data);
-        return redirect()->route('admin.students.index')->with('success', 'Yaratildi!');
+        return redirect()->route('admin.students.index')->with('success','Yaratildi!');
 
     }
 
@@ -95,19 +97,32 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::findOrFail($id);
-
+        $data = $request;
         $request->validate([
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'course' => 'required',
             'group' => 'required',
             'address' => 'required',
             'user_name' => 'required',
-            'password' => 'required'
-        ]);
-        $student->update($request->post());
-        return redirect()->route('admin.students.index')->with('success','Yangiladi!');
+            // 'password' => 'required'
+            ]);
+        $user_data = [
+            'phone' => $request->post('user_name'),
+        ];
+        $student->user->update($user_data);
+        $student_data = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'course' => $data['course'],
+            'group' =>  $data['group'],
+            'address' => $data['address'],
+            
+        ];    
+        $student->update($student_data);
+
+        return redirect()->route('admin.students.index')->with('success','Yangilandi!');
     }
 
     /**
@@ -119,7 +134,19 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $delete = Student::findOrFail($id);
-        $delete->delete();
+        $delete->user->delete();
         return redirect()->route('admin.students.index')->with('delete','O`chirildi!');
     }
+
+    public function password(PasswordRequest $request,$id)
+    {
+        $password = Student::findOrFail($id);
+        $data = [
+            'password' => bcrypt($request->post('password')),
+        ];
+        $password->user->update($data);
+        return redirect()->route('admin.students.index')->with('success','Yangilandi');
+    }
+
+    
 }

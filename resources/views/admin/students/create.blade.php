@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin',['title' => 'Talabalar qo\'shish'])
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -16,12 +16,7 @@
                     <div class="p-5">
                         <div class="form-group">
                             <label for="name">Ismi <span style="color: red">*</span></label>
-                            <input value="{{@old('first_name')}}" id="name" class="form-control @error('name') is-invalid @enderror" name="first_name" type="text">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror  
+                            <input value="{{@old('first_name')}}" id="name" class="form-control" name="first_name" type="text" autofocus>
                         </div>
                         <div class="form-group">
                             <label for="">Familiyasi <span style="color: red">*</span></label>
@@ -43,25 +38,19 @@
                             <label for="">Amaliyot manzili<span style="color: red">*</span></label>
                             <input class="form-control" value="{{@old('address')}}" name="address" type="text">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="">Email<span style="color: red">*</span></label>
                             <input class="form-control" value="{{@old('email')}}" name="email" type="text">
-                        </div>
+                        </div> --}}
                         <div class="form-group">
-                            <label for="">Login<span style="color: red">*</span></label>
-                            <input class="form-control" value="{{@old('user_name')}}" name="user_name" type="text" >
+                            <label for="">Tel:<span style="color: red">*</span></label>
+                            <input class="form-control" value="{{@old('user_name')}}" placeholder="misol: 941234567" name="user_name" type="number" >
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="password">Parol<span style="color: red">*</span></label>
                                 <input id="password" class="form-control" 
-                                    name="password" type="password" required autocomplete="new-password">
-                                    {{-- @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror --}}
-                                     
+                                    name="password" type="password" required autocomplete="new-password"> 
                             </div>
                             <div class="col-sm-6">
                                 <label for="password-confirm">Parolni takrorlang<span style="color: red">*</span></label>

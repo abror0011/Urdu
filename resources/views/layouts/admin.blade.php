@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>{{$title}} </title>
 
   <!-- Custom fonts for this template-->
   <link href="/Dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -64,9 +64,15 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="{{route('admin.amaliyot.index')}} ">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Amaliyot</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.amaliyotlar')}} ">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Amaliyotlar</span></a>
       </li>
 
       <!-- Divider -->
@@ -239,7 +245,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->phone}} </span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -283,8 +289,8 @@
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+          <div class="copyright text-center my-auto text-gray-900">
+            <span>Copyright &copy; Your Website 2020</span>
           </div>
         </div>
       </footer>
@@ -313,8 +319,11 @@
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <form method="POST" action="{{route('logout')}} ">
+            @csrf
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary">Logout</button>
+          </form>
         </div>
       </div>
     </div>
