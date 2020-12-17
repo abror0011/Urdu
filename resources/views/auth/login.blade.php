@@ -19,8 +19,13 @@
                 <form method="POST" class="user" action="{{ route('login') }}">
                     @csrf
                   <div class="form-group">
-                    <input placeholder="Phone" id="number" type="number" 
-                      class="form-control form-control-user" name="phone" value="{{ old('phone') }}"  autofocus>
+                    <input placeholder="Phone" id="phone" type="tel" 
+                      class="form-control form-control-user @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  autofocus>
+                      @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror 
                   </div>
                   <div class="form-group">
                     <input placeholder="Password" id="password" type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -53,4 +58,8 @@
     </div>
 
   </div>
+@endsection
+@section('custom-scripts')  
+    <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\LoginRequest') !!}
 @endsection

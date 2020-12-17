@@ -16,4 +16,26 @@ class AmaliyotlarController extends Controller
         $amaliyot = Amaliyot::latest()->get();
         return view('admin.amaliyotlar.index',compact('amaliyot'));
     }
+
+    public function rayting(Request $request,$id)
+    {
+        // dd($request);
+        // dd($rayting);
+        $rayting = Amaliyot::findOrFail($id);
+        
+        $request->validate([
+            'rayting' => 'required'
+        ]);
+        $data = [
+            'rayting' => $request->post('rayting'),
+        ];
+        dd($data);
+        $rayting->update($data);
+        return redirect()->route('admin.amaliyotlar');
+    }
+    public function batafsil($id)
+    {
+        $batafsil = Amaliyot::findOrFail($id);
+        return view('admin.amaliyotlar.batafsil',compact('batafsil'));
+    }
 }

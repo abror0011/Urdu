@@ -22,8 +22,7 @@ class CreateStudentsTable extends Migration
             $table->string('last_name')->notNull();
             $table->integer('course')->notNull();
             $table->string('group')->notNull();
-            $table->string('address')->notNull();            
-            $table->integer('reyting')->nullable();
+            $table->string('address')->notNull(); 
             $table->timestamps();
         });
     }

@@ -29,6 +29,8 @@ class StudentRequest extends FormRequest
             'group' => 'required|string',
             'address' => 'required|string',
             'user_name' => 'required|unique:users,phone',
+            'password'=>'required|min:6|confirmed'
+
             // 'email' => 'required|unique:users|email|string',
 
         ];

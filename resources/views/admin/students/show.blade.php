@@ -10,7 +10,7 @@
         </h5>
     </div>
     <div class="card-body">
-        <table class="table table-striped text-gray-900">
+        <table class="table table-striped table-bordered text-gray-900">
             <tr>
                 <th>Ismi</th>
                 <td>{{$student->first_name}}</td>

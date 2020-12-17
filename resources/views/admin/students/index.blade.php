@@ -29,7 +29,7 @@
                     <td>{{$student->address}}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <a target="_blank" href="{{route('admin.students.show',$student->id)}} " class="btn btn-primary">
+                            <a  href="{{route('admin.students.show',$student->id)}} " class="btn btn-primary">
                                 <i class="fa fa-eye"></i>
                             </a>
                             <div class="btn-group" role="group">
@@ -39,18 +39,22 @@
                               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 <a class="dropdown-item" href="{{route('admin.students.edit',$student->id)}}"><i class="fa fa-edit"></i> Tahrirlash</a>
                                 <form method="POST" action="{{route('admin.students.destroy',$student->id)}} ">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="dropdown-item" type="submit"><i class="fa fa-trash"></i> O'chirish</button>
-                                </form> 
+                                  @csrf
+                                  @method('DELETE')
+                                  <button class="dropdown-item" type="submit"> <i class="fa fa-trash"></i> Delete </button>
+                                </form>
                               </div>
                             </div>
                         </div>
                     </td>
                 </tr>
+                 
                 @endforeach
             </tbody>
         </table>
+        <nav class="blog-pagination float-right justify-content-center d-flex">
+            {{ $students->links()}}                            
+        </nav>
         
     </div>
 </div>

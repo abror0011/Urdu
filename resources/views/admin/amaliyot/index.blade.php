@@ -16,43 +16,44 @@
                 <th width="180px">Amallar</th>
             </thead>
             <tbody>
-                @if (!empty($data))
-                @foreach($data as $value)
-                <tr>
-                    {{-- {{dd($value->images->thumb)}} --}}
-                    <td><img src="/storage/{{$value->images->thumb}}" width="80px" alt="AAA"> </td>
-                    <td>{{$value->title}}</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <a target="_blank" href="{{route('admin.amaliyot.show',$value->id)}} " class="btn btn-primary">
-                                <i class="fa fa-eye"></i></a>
-                            <div class="btn-group" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" 
-                                aria-haspopup="true" aria-expanded="false">
-                                </button>
-                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" href="{{route('admin.amaliyot.edit',$value->id)}} "><i class="fa fa-edit"></i> Tahrirlash</a>
-                                <form method="POST" action="{{route('admin.amaliyot.destroy',$value->id )}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="dropdown-item" type="submit"><i class="fa fa-trash"></i> O'chirish</button>
-                                </form> 
-                              </div>
+                @foreach($amaliyot as $value)
+                    @if ($value->student_id == $user)
+                    <tr>
+                        {{-- {{dd($value->images->thumb)}} --}}
+                        <td><img src="/storage/{{$value->images->thumb}}" width="80px" alt="AAA"> </td>
+                        <td>{{$value->title}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <a  href="{{route('admin.amaliyot.show',$value->id)}} " class="btn btn-primary">
+                                    <i class="fa fa-eye"></i></a>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" 
+                                    aria-haspopup="true" aria-expanded="false">
+                                    </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="{{route('admin.amaliyot.edit',$value->id)}} "><i class="fa fa-edit"></i> Tahrirlash</a>
+                                    <form method="POST" action="{{route('admin.amaliyot.destroy',$value->id)}} ">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="dropdown-item" type="submit"> <i class="fa fa-trash"></i> Delete </button>
+                                      </form>
+                                </div>
+                                </div>
                             </div>
+                        </td>
+                    </tr>
+                    @else
+                    @continue
+                        <div class="text-gray-900">
+                            <h6 class="text-center">Sizda hali amaliyot qo'shilmagan! Amaliyot qashish uchun <a href="{{route('admin.amaliyot.create')}} ">Yaratish</a> ni boshing</h6>
+                            <h6 class="text-center"></h6>
                         </div>
-                    </td>
-                </tr>
-                @endforeach
-                @else
-                <tr>
-                    <h4 class="text-gray-900">Sizda hali amaliyot qoshilmagam!</h4>
+                    @endif
                     
-                </tr>
-                @endif
-               
+                @endforeach 
             </tbody>
         </table>
-        
+       
     </div>
 </div>
     

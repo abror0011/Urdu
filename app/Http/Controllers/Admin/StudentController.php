@@ -19,7 +19,7 @@ class StudentController extends Controller
      */
     public function index()
     {   
-        $students = Student::latest()->get();
+        $students = Student::latest()->paginate(10);
         // dd($students);
         return view('admin.students.index',compact('students')); 
     }
@@ -47,7 +47,7 @@ class StudentController extends Controller
             'phone' => $request->post('user_name'),
             'password' => bcrypt($request->post('password'))
         ];
-        $user=User::create($user_data);
+        $user = User::create($user_data);
            
         $student_data = [
             'first_name' => $data['first_name'],

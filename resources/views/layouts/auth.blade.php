@@ -37,6 +37,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="/Dashboard/js/sb-admin-2.min.js"></script>
+  @yield('custom-scripts')
 
 </body>
 

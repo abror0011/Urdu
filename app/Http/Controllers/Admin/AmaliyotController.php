@@ -26,23 +26,8 @@ class AmaliyotController extends Controller
     public function index()
     {   
         $user = Auth::user()->student->id;
-        // $student = Amaliyot::get()->title;
-        // $amaliyot = DB::table('amaliyot')->where('student_id', '=', $user)->latest()->get();
-        // dd($amaliyot);
-        $amaliyotlar = Amaliyot::latest()->get();
-        foreach ($amaliyotlar as $amaliyot) {
-            if ($amaliyot->student_id == $user) {
-                $data[] = $amaliyot;
-            }
-        }
-        if(!empty($data)){
-            return view('admin.amaliyot.index',compact('data'));
-        }
-        else
-        {
-            $data = "";
-            return view('admin.amaliyot.index',compact('data'));
-        }
+        $amaliyot = Amaliyot::latest()->get();
+        return view('admin.amaliyot.index',compact('user','amaliyot'));
     }
 
     /**
@@ -113,7 +98,7 @@ class AmaliyotController extends Controller
         // }
         
         
-        return redirect()->route('admin.amaliyot.index');
+        return redirect()->route('admin.amaliyot.index')->with(['success' => 'Amaliyot yaratildi']);
     }
 
     /**

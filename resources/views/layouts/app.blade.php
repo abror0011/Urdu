@@ -18,6 +18,7 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                
             }
 
             .full-height {
@@ -65,7 +66,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            {{-- @if (Route::has('login'))
+            @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ route('admin.home') }}">Home</a>
@@ -77,7 +78,7 @@
                         @endif
                     @endauth
                 </div>
-            @endif --}}
+            @endif
                 @yield('content')
             <div class="content">
                 <div class="title m-b-md">

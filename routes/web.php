@@ -18,9 +18,12 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->
     // Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/students','StudentController');
     Route::resource('/amaliyot','AmaliyotController');
+    Route::resource('/posts','PostsController');
     // Profile uptada
     Route::put('/password/{id}','StudentController@password')->name('password');
     Route::get('/amaliyotlar','AmaliyotlarController@index')->name('amaliyotlar');
+    Route::put('/rayting/{id}','AmaliyotlarController@rayting')->name('rayting');
+    Route::get('/batafsil{id}','AmaliyotlarController@batafsil')->name('batafsil');
 });
 
 

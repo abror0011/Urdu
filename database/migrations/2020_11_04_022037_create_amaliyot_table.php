@@ -19,7 +19,7 @@ class CreateAmaliyotTable extends Migration
             $table->foreign('student_id')->references('id')->on('students')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
-            $table->string('content');
+            $table->integer('rayting')->default(0);
             $table->timestamps();
         });
     }
