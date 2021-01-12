@@ -10,7 +10,9 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+            <div class="col-lg-6 d-none d-lg-block">
+              <img src="Dashboard/img/login_splash.jpg" width="450px" alt="">
+            </div>
             <div class="col-lg-6">
               <div class="p-5">
                 <div class="text-center">

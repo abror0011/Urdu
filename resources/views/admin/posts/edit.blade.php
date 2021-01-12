@@ -14,7 +14,7 @@
             <div class="text-gray-900">
                 <div class="form-group">
                     <label class="d-block" for="Rasm">Rasm</label>
-                    <img src="/storage/{{$post->thumb}}" class="mb-2" width="90px">
+                    <img src="/storage/{{$post->thumb}}" class="mb-2" width="110px">
                     <input type="file" name="image" id="Rasm" class="form-control">
                 </div>
                 <div class="form-group">

@@ -52,9 +52,9 @@
                 </td>
             </tr> --}}
             <tr>
-                <th>Bahosi</th>
+                <th>Umumiy bahosi</th>
                 <td>
-                    {{$student->reyting}}
+                    {{$student->allRating}}
                 </td>
             </tr>
             

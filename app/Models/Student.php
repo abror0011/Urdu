@@ -18,7 +18,7 @@ class Student extends Model
         'address',
         'user_name',
         'password',
-        'reyting'
+        'allRating'
     ]; 
     public function user()
     {

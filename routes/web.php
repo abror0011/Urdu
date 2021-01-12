@@ -21,9 +21,13 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->
     Route::resource('/posts','PostsController');
     // Profile uptada
     Route::put('/password/{id}','StudentController@password')->name('password');
-    Route::get('/amaliyotlar','AmaliyotlarController@index')->name('amaliyotlar');
+    Route::get('/amaliyotlar','AmaliyotlarController@index')->name('yangiAmaliyotlar');
+    Route::get('/barchaAmaliyotlar','AmaliyotlarController@amaliyotlar')->name('barchaAmaliyotlar');
     Route::put('/rayting/{id}','AmaliyotlarController@rayting')->name('rayting');
     Route::get('/batafsil{id}','AmaliyotlarController@batafsil')->name('batafsil');
+    Route::get('/profile','ProfileController@profile')->name('profile');
+    Route::put('/profile_update','ProfileController@profile_update')->name('profile_update');
+    Route::put('/password','ProfileController@profile_password')->name('password_update');
 });
 
 

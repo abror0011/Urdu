@@ -8,35 +8,44 @@
             <a class="btn btn-sm btn-primary float-right" href="{{route('admin.home')}}">Orqaga</a>
         </h5>
     </div>
+    @include('admin.alerts.main') 
     <div class="card-body row text-gray-900">
+        
+            @if ($amaliyot->isEmpty())
+            <div class="text-center col-lg-12">
+                <h5 class="">Yangi qo'shilgan amaliyotlar yo'q!</h5>                
+            </div>
+            @endif
+        
        @foreach ($amaliyot as $index => $item)
-        <div class="card col-sm-4 p-3 mb-3 mb-sm-0" style="width: 16rem;">
+        <div class="card col-lg-4 mt-3" style="width: 27rem;">
             <img src="/storage/{{$item->images->thumb}} " class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fas fa-user-graduate"></i> {{$item->student->first_name}} {{$item->student->last_name}} </h5>
                     <h5 class="card-title"><i class="fas fa-users"></i> {{$item->student->course}}-kurs {{$item->student->group}}-guruh</h5>
                     <p class="card-text">{{$item->title}}</p>
-                    <p class="cart-text">{{$item->rayting}} </p>
+                    
                     <form method="POST" action="{{route('admin.rayting',$item->id)}}" >
                         @csrf
                         @method('PUT')
                         <fieldset class="rating">
-                            <input type="radio" id="{{$index}}" name="rating" value="5" /><label class = "full" for="{{$index}}" title="Awesome - 5 stars"></label>
-                            <input type="radio" id="{{$index+1}}" name="rating" value="4" /><label class = "full" for="{{$index+1}}" title="Pretty good - 4 stars"></label>
-                            <input type="radio" id="{{$index+2}}" name="rating" value="3" /><label class = "full" for="{{$index+2}}" title="Meh - 3 stars"></label>
-                            <input type="radio" id="{{$index+4}}" name="rating" value="2" /><label class = "full" for="{{$index+4}}" title="Kinda bad - 2 stars"></label>
-                            <input type="radio" id="{{$index+5}}" name="rating" value="1" /><label class = "full" for="{{$index+5}}" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="{{$index+10000}}" name="rating" value="5" /><label class = "full " for="{{$index+10000}}" title="Awesome - 5 stars"> </label>
+                            <input type="radio" id="{{$index+20000}}" name="rating" value="4" /><label class = "full" for="{{$index+20000}}" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="{{$index+30000}}" name="rating" value="3" /><label class = "full" for="{{$index+30000}}" title="Meh - 3 stars"></label>
+                            <input type="radio" id="{{$index+40000}}" name="rating" value="2" /><label class = "full" for="{{$index+40000}}" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="{{$index+50000}}" name="rating" value="1" /><label class = "full" for="{{$index+50000}}" title="Sucks big time - 1 star"></label>
                         </fieldset>
+                        <button type="submit" class="btn btn-sm btn-primary mt-3 ml-2"><i class="fas fa-check"></i></button> 
                         
-                            
-                        <button type="submit" class="btn btn-primary">
-                            Baholash                                                      
-                        </button>
                     </form>
                      {{-- <a href="{{route('admin.batafsil',$item)}} " class="btn btn-outline-info">Batafsil</a>    --}}
                 </div>
         </div>
        @endforeach 
     </div>
+    <nav class="blog-pagination float-right justify-content-center d-flex">
+        {{ $amaliyot->links()}}                            
+        </nav>
+
 </div>
 @endsection

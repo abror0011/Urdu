@@ -51,11 +51,12 @@ class AmaliyotController extends Controller
         
         $user = Auth::user()->student->id;
         // dd($user);
-        
+       
         $data = $request;
         $amaliyot = [
             'student_id' => $user,
             'title' => $request->post('title'),
+            
             
         ];
         $amaliyot_data = Amaliyot::create($amaliyot);

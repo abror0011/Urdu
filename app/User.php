@@ -7,10 +7,13 @@ use App\Models\Student;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Images;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'phone', 'email', 'password',
+        'phone','password','avatar','thumbs'
     ];
 
     /**
@@ -43,4 +46,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAvatar()
+    {
+        $check = Storage::disk('public')->has($this->thumbs);
+
+        if ($check)
+            return Storage::url($this->thumbs);
+        
+        return env('AVATAR_DEFAULT');
+    }
 }

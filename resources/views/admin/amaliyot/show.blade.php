@@ -10,15 +10,19 @@
         </h5>
     </div>
     <div class="card-body">
-        <table class="table table-striped text-gray-900">
+        <table class="table table-responsive-sm text-gray-900">
             <tr>
-                <th>Rasm</th>
+                <th>Rasm:</th>
+            </tr>
+            <tr>
                 <td>
-                    <img src="/storage/{{$show->images->thumb}}" width="90px" alt="">
+                    <img src="/storage/{{$show->images->thumb}}" width="200px" alt="">
                 </td>
             </tr>
             <tr>
-                <th>Izoh</th>
+                <th>Izoh:</th>
+            </tr>
+            <tr>
                 <td>
                     {{$show->title}}
                 </td>

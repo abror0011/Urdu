@@ -13,7 +13,8 @@ class Amaliyot extends Model
         'student_id',
         // 'image',
         'title',
-        'content'
+        'content',
+        'rayting'
     ];
     public function images()
     {

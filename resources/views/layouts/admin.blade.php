@@ -17,6 +17,14 @@
   <link rel="stylesheet" href="/Dashboard/css/rayting.css">
   <!-- Custom styles for this template-->
   <link href="/Dashboard/css/sb-admin-2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+
+  {{-- <link rel="stylesheet" href="{{mix('css/app.css')}}">
+  <!-- Custom styles for datetime picker-->
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/dashboard/css/additional.css" rel="stylesheet" type="text/css"> --}}
+    {{-- @stack('styles') --}}
 
 </head>
 
@@ -33,7 +41,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Urdu</div>
       </a>
 
       <!-- Divider -->
@@ -43,7 +51,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{route('admin.home')}} ">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Boshqaruv paneli</span></a>
       </li>
 
       <!-- Divider -->
@@ -54,7 +62,7 @@
         Interface
       </div>
 
-      
+      @role('admin')
       <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="{{route('admin.students.index')}} ">
@@ -62,17 +70,18 @@
           <span>Talabalar</span></a>
       </li>
 
-      <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.amaliyot.index')}} ">
-          <i class="fas fa-user-md"></i>
-          <span>Amaliyot</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.amaliyotlar')}} ">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-chart-line"></i>
-          <span>Amaliyotlar</span></a>
+          <span>Amaliyotlar</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route('admin.yangiAmaliyotlar')}}">Yangi amaliyotlat 
+              <span class="badge badge-danger ml-1 mb-2 badge-counter">{{DB::table('amaliyot')->where('rayting',0)->count()}} </span></a>
+            <a class="collapse-item" href="{{route('admin.barchaAmaliyotlar')}}">Barcha amaliyotlar</a>
+          </div>
+        </div>
       </li>
 
       <li class="nav-item">
@@ -80,7 +89,16 @@
           <i class="fas fa-rss"></i>
           <span>Yangiliklar</span></a>
       </li>
+      @endrole
 
+      @role('users')
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.amaliyot.index')}} ">
+          <i class="fas fa-user-md"></i>
+          <span>Amaliyot</span></a>
+      </li>
+      @endrole
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -251,23 +269,16 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->phone}} </span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><i class="fas fa-mobile-android"></i>{{Auth::user()->phone}} </span>
+                <img class="img-profile rounded-circle" src="{{ Auth::user()->getAvatar() }}">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{route('admin.profile')}}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
+                
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -351,7 +362,10 @@
   <!-- Page level custom scripts -->
   <script src="/Dashboard/js/demo/chart-area-demo.js"></script>
   <script src="/Dashboard/js/demo/chart-pie-demo.js"></script>
+  <script src="/Dashboard/js/demo/chart-bar-demo.js"></script>
   <script src="/Dashboard/js/modal.js"></script>
+  <script src="/Dashboard/js/app.js"></script>
+  @stack('scripts')
   @yield('custom-scripts')
 </body>
 

@@ -13,25 +13,31 @@ class AmaliyotlarController extends Controller
 {
     public function index()
     {   
-        $amaliyot = Amaliyot::latest()->get();
+        $amaliyot = Amaliyot::latest()->where('rayting',0)->paginate(9);
         return view('admin.amaliyotlar.index',compact('amaliyot'));
+    }
+
+    public function amaliyotlar()
+    {
+        $amaliyot = Amaliyot::latest()->get()->where('rayting',!0);
+        return view('admin.amaliyotlar.barchaAmaliyotlar',compact('amaliyot'));
     }
 
     public function rayting(Request $request,$id)
     {
-        // dd($request);
-        // dd($rayting);
+    
         $rayting = Amaliyot::findOrFail($id);
-        
         $request->validate([
-            'rayting' => 'required'
+            'rating' => 'required'
         ]);
-        $data = [
-            'rayting' => $request->post('rayting'),
-        ];
-        dd($data);
-        $rayting->update($data);
-        return redirect()->route('admin.amaliyotlar');
+        
+        $allRating = $rayting->student->allRating + $request->post('rating');    
+        $rayting->update([
+            'rayting' => $request->post('rating'),
+        ]);
+        $rayting->student->update(['allRating' => $allRating ]);
+        
+        return redirect()->route('admin.yangiAmaliyotlar')->with('success','Amaliyot baholandi!');
     }
     public function batafsil($id)
     {

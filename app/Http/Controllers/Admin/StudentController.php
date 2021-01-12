@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\PasswordRequest;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Traits\HasRoles;
 use App\Models\Student;
 use App\User;
 
@@ -45,10 +47,12 @@ class StudentController extends Controller
         $data = $request;
         $user_data = [
             'phone' => $request->post('user_name'),
-            'password' => bcrypt($request->post('password'))
+            'password' => bcrypt($request->post('password')),
+            'avatar'=>'',
+            'thumbs'=>'',
         ];
         $user = User::create($user_data);
-           
+        $user -> assignRole('users');   
         $student_data = [
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -110,6 +114,8 @@ class StudentController extends Controller
             ]);
         $user_data = [
             'phone' => $request->post('user_name'),
+            'avatar' => '',
+            'thumbs' => '',
         ];
         $student->user->update($user_data);
         $student_data = [

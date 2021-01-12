@@ -23,6 +23,7 @@ class CreateStudentsTable extends Migration
             $table->integer('course')->notNull();
             $table->string('group')->notNull();
             $table->string('address')->notNull(); 
+            $table->integer('allRating')->default(0);
             $table->timestamps();
         });
     }
