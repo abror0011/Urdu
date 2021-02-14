@@ -11,6 +11,7 @@
         @include('admin.alerts.main')
         <form method="POST" enctype="multipart/form-data" action="{{route('admin.posts.update',$post->id)}}">
             @csrf
+            @method('PUT')
             <div class="text-gray-900">
                 <div class="form-group">
                     <label class="d-block" for="Rasm">Rasm</label>

@@ -79,10 +79,10 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Bugungi sana</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">{{now()}}</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{now()->format('Y.m.d')}}</div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                <i class="far fa-clock fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -129,9 +129,39 @@
           </div>
         </div>
       </div>
-      
+       {{-- Amaliyotlar --}}
+  <div class="card-header py-3">
+    <h5 class="m-0 font-weight-bold text-primary">
+        Amaliyotlar
+    </h5>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+    </div>
+    @include('admin.alerts.main') 
+    <div class="card-body row text-gray-900">
+       @foreach ($amaliyotlar as $index => $item)
+        <div class="card col-lg-4 mt-3" style="width: 27rem;">
+            <img src="/storage/{{$item->images->thumb}} " class="card-img-top" alt="...">
+                <div class="card-body ">
+                    <h5 class="card-title"><i class="fas fa-user-graduate"></i> {{$item->student->first_name}} {{$item->student->last_name}} </h5>
+                    <h5 class="card-title"><i class="fas fa-users"></i> {{$item->student->course}}-kurs {{$item->student->group}}-guruh</h5>
+                    <p class="card-text ">{{$item->title}}</p>
+                    <p class="cart-text text-lg"><i class="fas fa-clipboard-list "></i> Bohosi: {{$item->rayting}}</p>
+                    
+                </div>
+        </div>
+       @endforeach 
+    </div>
+    <nav class="blog-pagination float-right justify-content-center d-flex">
+      {{ $amaliyotlar->links()}}                            
+    </nav>
+
+  </div>
       <!-- Pie Chart -->
      
     </div>
   </div>
+
+ 
 @endsection

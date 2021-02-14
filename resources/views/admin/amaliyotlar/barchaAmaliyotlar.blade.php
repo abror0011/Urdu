@@ -17,11 +17,14 @@
                     <h5 class="card-title"><i class="fas fa-user-graduate"></i> {{$item->student->first_name}} {{$item->student->last_name}} </h5>
                     <h5 class="card-title"><i class="fas fa-users"></i> {{$item->student->course}}-kurs {{$item->student->group}}-guruh</h5>
                     <p class="card-text ">{{$item->title}}</p>
-                    <p class="cart-text text-lg"><i class="fas fa-poll fa-2x mr-2"></i> {{$item->rayting}}  <i class="far fa-star text-primary"></i></p>
-                    
+                    <p class="cart-text text-lg"><i class="fas fa-clipboard-list "></i> Bohosi: {{$item->rayting}}</p>                    
                 </div>
         </div>
        @endforeach 
     </div>
+    <nav class="blog-pagination float-right justify-content-center d-flex">
+         {{ $amaliyot->links()}}                            
+    </nav>
+    
 </div>
 @endsection

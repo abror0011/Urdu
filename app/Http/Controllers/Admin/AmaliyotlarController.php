@@ -19,7 +19,7 @@ class AmaliyotlarController extends Controller
 
     public function amaliyotlar()
     {
-        $amaliyot = Amaliyot::latest()->get()->where('rayting',!0);
+        $amaliyot = Amaliyot::latest()->whereBetween('rayting',[1,5])->paginate(9);
         return view('admin.amaliyotlar.barchaAmaliyotlar',compact('amaliyot'));
     }
 

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Models\Amaliyot;
+use App\Models\Student;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $amaliyot = Student::all()->sortByDesc('allRating');
+        $amaliyot = Amaliyot::paginate(6);
+        return view('admin.home',compact('amaliyot', 'amaliyot'));
     }
 }

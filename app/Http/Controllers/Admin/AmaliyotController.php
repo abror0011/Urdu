@@ -26,7 +26,7 @@ class AmaliyotController extends Controller
     public function index()
     {   
         $user = Auth::user()->student->id;
-        $amaliyot = Amaliyot::latest()->get();
+        $amaliyot = Amaliyot::latest()->paginate(10);
         return view('admin.amaliyot.index',compact('user','amaliyot'));
     }
 
@@ -75,28 +75,6 @@ class AmaliyotController extends Controller
                 
         ];
         $amaliyot_data->images()->create($image_data);
-
-
-        // Bir nechta rasmni yuklash.
-        // $files = $data->file('image');
-        // foreach ($files as $file) {
-        //     $img = $file->store('amaliyot',['disk' => 'public']);
-        //     $full_path = storage_path('app/public/'.$img);
-        //     $full_path_thumb = storage_path('app/public/thumbs/'.$img);
-
-        //     $thumb = Image::make($full_path);
-        //     //Proporsiyani to'g'irlash
-        //     $thumb->fit(290, 290, function($constraint) {
-        //         $constraint->aspectRatio();
-        //     })->save($full_path_thumb);
-                
-        //     $image_data = [
-        //         'image' => $img,
-        //         'thumb' => 'thumbs/'.$img,
-        //     ];
-        // $amaliyot_data->images()->create($image_data);    
-
-        // }
         
         
         return redirect()->route('admin.amaliyot.index')->with(['success' => 'Amaliyot yaratildi']);
@@ -178,8 +156,12 @@ class AmaliyotController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Amaliyot::findOrFail($id);
-        $delete->delete();
+        $amaliyot = Amaliyot::findOrFail($id);
+        $amaliyot->delete();
+        // Storage::disk('public')->delete([
+        //     $amaliyot->images->image,
+        //     $amaliyot->images->thumb
+        // ]);
         return redirect()->route('admin.amaliyot.index')->with(['delete' => 'Amaliyot o`chirildi']);
     }
 }

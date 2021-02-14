@@ -13,7 +13,8 @@ class SityController extends Controller
     //
     public function home(){
         $amaliyot = Student::all()->sortByDesc('allRating');
-        return view('admin.home',compact('amaliyot'));
+        $amaliyotlar = Amaliyot::paginate(6);
+        return view('admin.home',compact('amaliyot', 'amaliyotlar'));
     }
     
 }

@@ -12,7 +12,8 @@
         <table class="table table-bordered text-gray-900">
             <thead>
                 <th>Rasm</th>
-                <th>Izoh</th>                
+                <th>Izoh</th>
+                <th>Bahosi</th>                
                 <th width="100px">Amallar</th>
             </thead>
             <tbody>
@@ -22,6 +23,7 @@
                         {{-- {{dd($value->images->thumb)}} --}}
                         <td><img src="/storage/{{$value->images->thumb}}" width="80px" alt="AAA"> </td>
                         <td>{{$value->title}}</td>
+                        <td>{{($value->rayting == 0) ? 'Baholanmagan!' :"Bahosi: ".$value->rayting}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 <a href="{{route('admin.amaliyot.show',$value->id)}}" class="btn btn-sm btn-primary">
@@ -30,8 +32,8 @@
                                 <div class="btn-group" role="group">
                                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="{{route('admin.amaliyot.edit',$value->id)}}"><i class="fa fa-edit"></i> @lang('Edit')</a>
-                                        <button class="dropdown-item delete-btn" data-url="{{route('admin.amaliyot.destroy',$value->id)}}"><i class="fa fa-trash"></i> @lang('Delete')</button>
+                                        <a class="dropdown-item" href="{{route('admin.amaliyot.edit',$value->id)}}"><i class="fa fa-edit"></i> @lang('Tahrirlash')</a>
+                                        <button class="dropdown-item delete-btn" data-url="{{route('admin.amaliyot.destroy',$value->id)}}"><i class="fa fa-trash"></i> @lang('O\'chirish')</button>
                                     </div>
                                 </div>
                             </div>                        
@@ -50,6 +52,9 @@
 
             </tbody>
         </table>
+        <nav class="blog-pagination float-right justify-content-center d-flex">
+            {{ $amaliyot->links()}}                            
+          </nav>
        
     </div>
 </div>

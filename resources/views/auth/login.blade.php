@@ -11,12 +11,12 @@
           <!-- Nested Row within Card Body -->
           <div class="row">
             <div class="col-lg-6 d-none d-lg-block">
-              <img src="Dashboard/img/login_splash.jpg" width="450px" alt="">
+              <img src="Dashboard/img/login_splash.jpg"  width="480px" height="398px" alt="">
             </div>
             <div class="col-lg-6">
               <div class="p-5">
                 <div class="text-center">
-                  <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                  <h1 class="h4 text-gray-900 mb-4">Xush kelibsiz!</h1>
                 </div>
                 <form method="POST" class="user" action="{{ route('login') }}">
                     @csrf
@@ -43,12 +43,12 @@
                         <input class="custom-control-input" type="checkbox" name="remember" id="customCheck" {{ old('remember') ? 'checked' : '' }}>
 
                         <label class="custom-control-label" for="customCheck">
-                            {{ __('Remember Me') }}
+                            {{ __('Eslab qol') }}
                         </label>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary btn-block btn-user">
-                    {{ __('Login') }}
+                    {{ __('Kirish') }}
                 </button>
                   <hr>
               </div>

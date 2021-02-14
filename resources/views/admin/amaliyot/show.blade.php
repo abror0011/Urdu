@@ -27,6 +27,14 @@
                     {{$show->title}}
                 </td>
             </tr>
+            <tr>
+                <th>Bahosi:</th>
+            </tr>
+            <tr>
+                <td>
+                    {{$show->rayting}}
+                </td>
+            </tr>
            
             
         </table>

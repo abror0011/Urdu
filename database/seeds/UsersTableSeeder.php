@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Models\Teacher;
 
 
 class UsersTableSeeder extends Seeder
@@ -19,6 +20,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'avatar' => '/dashboard/img/default-avatar.png',
         ]);
+        
         $user->assignRole('admin');
 
     }

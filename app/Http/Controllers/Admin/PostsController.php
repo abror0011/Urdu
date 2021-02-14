@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostsRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use Image;
 
@@ -17,7 +18,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(9);
+        $posts = Post::latest()->paginate(10);
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -45,7 +46,7 @@ class PostsController extends Controller
         $full_thumb_path = storage_path('app/public/thumbs/'.$img_name);
 
         $thumb = Image::make($full_path);
-        $thumb -> fit(350,350,function($constraint){
+        $thumb -> fit(750,375,function($constraint){
             $constraint->aspectRatio();
         })->save($full_thumb_path);
         
@@ -96,7 +97,41 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $request->validate([
+            'title' => 'required',
+            'content'=>'required',      
+        ]);
+        if($request->file('image')){
+            Storage::disk('public')->delete([
+                $post->image,
+                $post->thumb
+            ]);
+
+            $image_name = $request->file('image')->store('posts',['disk' => 'public']);
+            $thumb_name = 'thumbs/'.$image_name;
+            $full_path = storage_path('app/public/'.$image_name);
+            $full_thumb_path = storage_path('app/public/'.$thumb_name);
+    
+            $thumb = Image::make($full_path);
+            $thumb->fit(350, 350, function($constraint){
+                $constraint->aspectRatio();
+            })->save($full_thumb_path);
+
+        }
+        else{
+            $image_name = $post->image;
+            $thumb_name = $post->thumb;
+        }
+
+        $post->update([
+            'image' => $image_name,
+            'thumb' => $thumb_name,
+            'title' => $request->post('title'),
+            'content' => $request->post('content')
+        ]);
+        return redirect()->route('admin.posts.index')->with(['success'=> 'Yangilandi']);
+
     }
 
     /**
@@ -107,6 +142,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        Storage::disk('public')->delete([
+            $post->image,
+            $post->thumb
+        ]);
+        return redirect()->route('admin.posts.index')->with(['delete' => 'Yangilik o`chirildi']);
     }
 }

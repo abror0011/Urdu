@@ -44,8 +44,8 @@
        @endforeach 
     </div>
     <nav class="blog-pagination float-right justify-content-center d-flex">
-        {{ $amaliyot->links()}}                            
-        </nav>
+         {{ $amaliyot->links()}}                            
+    </nav>
 
 </div>
 @endsection

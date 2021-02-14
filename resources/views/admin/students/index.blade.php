@@ -35,8 +35,8 @@
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="{{route('admin.students.edit',$student->id)}}"><i class="fa fa-edit"></i> @lang('Edit')</a>
-                                    <button class="dropdown-item delete-btn" data-url="{{route('admin.students.destroy',$student->id)}}"><i class="fa fa-trash"></i> @lang('Delete')</button>
+                                    <a class="dropdown-item" href="{{route('admin.students.edit',$student->id)}}"><i class="fa fa-edit"></i> @lang('Tahrirlash')</a>
+                                    <button class="dropdown-item delete-btn" data-url="{{route('admin.students.destroy',$student->id)}}"><i class="fa fa-trash"></i> @lang('O\'chirish')</button>
                                 </div>
                             </div>
                         </div>                        

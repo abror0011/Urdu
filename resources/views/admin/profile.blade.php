@@ -6,7 +6,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
-                    Profilni tahrirlar
+                    Profilni tahrirlash
                 </h6>
             </div>
             <div class="card-body">
@@ -59,7 +59,7 @@
                 </h6>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{route('admin.password_update')}} ">
+                <form method="POST" action="{{route('admin.password',$user->id)}} ">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
