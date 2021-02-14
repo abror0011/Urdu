@@ -10,7 +10,7 @@
     <div class="card-body text-gray-900">
         <div class="card mb-3">
             <div class="text-center">
-                <img src="/storage/{{$post->image}} " class="mt-3" width="550px" alt="...">
+                <img class="img-fluid" src="/storage/{{$post->thumb}} "   alt="...">
             </div>
             <div class="card-body">
               <p class="d-inline-block mr-3"><i class="fas fa-calendar"></i> {{$post->created_at->format('H:i d/m/y')}}  </p>

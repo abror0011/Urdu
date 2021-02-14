@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('layouts/app',['title' => 'Shartnoma'])
 @section('content')
 <hr>
             <section class="blog_area single-post-area ">

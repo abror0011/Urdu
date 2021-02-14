@@ -1,10 +1,10 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Bosh sahisa</title>
+    <title>{{ $title }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -55,8 +55,8 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="{{route('home')}}">Bosh menyu</a></li>
-                                        <li><a class="active" href="{{route('news')}}">Yangiliklar</a></li>
+                                        <li><a class="" href="{{route('home')}}">Bosh menyu</a></li>
+                                        <li><a class="" href="{{route('news')}}">Yangiliklar</a></li>
                                         <li><a href="#">Biz haqimizda <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{{route('about')}}">Loyiha haqida</a></li>
@@ -69,12 +69,25 @@
                                             </ul>
                                         </li>
                                         <li><a href="{{route('author')}}">Mualliflar</a></li>
-                                        
+                                        <li>                                   
+                                            @if (Route::has('login'))
+                                                <div class="top-right links">
+                                                    @auth
+                                                        <a  href="{{ route('admin.home') }}">Admin</a>
+                                                        
+                                                    @else
+                                                        <a  href="{{ route('login') }}">Kirish</a>
+                                                    
+                                                    @endauth
+                                                </div>
+                                            @endif
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block book_btn d-none d-lg-block">
+
+                        {{-- <div class="col-xl-3 col-lg-3 d-none d-lg-block book_btn d-none d-lg-block">
                             @if (Route::has('login'))
                             <div class="top-right links">
                                 @auth
@@ -86,10 +99,10 @@
                                     {{-- @if (Route::has('register'))
                                         <a href="{{ route('register') }}">Register</a>
                                     @endif --}}
-                                @endauth
-                            </div>
-                        @endif
-                        </div>
+                                {{-- @endauth --}}
+                            {{-- </div> --}}
+                        {{-- @endif --}}
+                        {{-- </div>  --}}
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
                         </div>

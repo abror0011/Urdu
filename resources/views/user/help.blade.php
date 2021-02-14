@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app',['title' => 'Yo\'riqnoma'])
 @section('content')
     <!-- bradcam_area_start  -->
     <div class="bradcam_area breadcam_bg bradcam_overlay">

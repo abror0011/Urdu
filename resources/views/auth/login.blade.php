@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.auth',['title' => 'Kirish'])
 
 @section('content')
  <!-- Outer Row -->

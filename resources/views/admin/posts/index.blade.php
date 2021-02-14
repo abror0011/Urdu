@@ -19,7 +19,7 @@
             <tbody>
                 @foreach($posts as $post)
                 <tr>
-                    <td><img src="/storage/{{$post->thumb}}" width="85  px" alt=""></td>
+                    <td><img  src="/storage/{{$post->thumb}}" width="100px" alt=""></td>
                     <td>{{$post->title}} </td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">

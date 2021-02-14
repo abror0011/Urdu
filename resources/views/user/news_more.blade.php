@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('layouts/app',['title' => 'Batafsil yangiliklar'])
 @section('content')
   <!-- bradcam_area_start  -->
   <div class="bradcam_area breadcam_bg bradcam_overlay">
@@ -25,6 +25,7 @@
                      <img class="img-fluid" src="/storage/{{$news_more->thumb }}" alt="">
                   </div>
                   <div class="blog_details">
+                     <p> <i class="fa fa-calendar"> </i>  {{ $news_more->created_at->format('M-d-Y') }}</p>
                      <h2>{{$news_more->title}}</h2>
                      <p class="excert">{{$news_more->content}}</p>
                   </div>

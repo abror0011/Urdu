@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('layouts/app',['title' => 'Yangiliklar'])
 @section('content')
     <!-- bradcam_area_start  -->
     <div class="bradcam_area breadcam_bg bradcam_overlay">
@@ -25,6 +25,7 @@
                             <article class="blog_item">
                                 <div class="blog_item_img">
                                     <img class="card-img rounded-0" src="storage/{{$new->thumb}}" alt="">
+                                    
                                     <a href="{{route('news_more', $new->id)}}" class="blog_item_date    ">
                                         <h3 class="">{{$new->created_at->format('d')}}</h3>
                                         <p>{{$new->created_at->format('M')}}</p>
@@ -32,6 +33,8 @@
                                 </div>
 
                                 <div class="blog_details">
+                                   
+                                    <p> <i class="fa fa-calendar"> </i>  {{ $new->created_at->format('M-d-Y') }}</p>
                                     <a class="d-inline-block" href="{{route('news_more', $new->id)}}">
                                         <h2>{{$new->title}}</h2>
                                     </a>
